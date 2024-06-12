@@ -70,12 +70,8 @@
                                             <td>{{ $index+1 }}</td>
                                             <td>{{ $absen->nama_crew }}</td>
                                             <td>{{ $absen->kehadiran }}</td>
-                                            <td class="d-flex align-items-center">
-                                                <form id="hapusAbsen-{{ $absen->id }}" action="{{ route('hapus-absen', $absen->id) }}" method="post">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger mx-auto" onclick="confirmHapus({{ $absen->id }})">Hapus</button>
-                                                </form>
+                                            <td>
+                                                <button type="submit" class="btn btn-danger" onclick="confirmHapus({{ $absen->id }})">Hapus</button>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -92,6 +88,11 @@
         <!-- End Page-content -->
 
     </div>
+
+    <form id="hapusAbsen-{{ $absen->id }}" action="{{ route('hapus-absen', $absen->id) }}" method="post">
+        @csrf
+        @method('DELETE')
+    </form>
 
     <!-- Modal Tambah Crew -->
     <div id="AddAbsensi" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
@@ -181,6 +182,17 @@
 
         });
 
+        </script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const form = document.getElementById('absensiForm');
+                form.addEventListener('submit', function (event) {
+                    const submitButton = form.querySelector('button[type="submit"]');
+                    submitButton.disabled = true;
+                    submitButton.innerText = 'Processing...'; // Optional: Change button text to indicate processing
+                });
+            });
         </script>
 
         <script>

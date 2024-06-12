@@ -417,14 +417,11 @@
                                         @enderror
                                     </div>
                                     <div class="card pb-3">
-                                        <label for="status" class="form-label">Status Crew</label>
-                                        <select class="form-select" aria-label="Default select example" id="status" name="status_crew" required>
-                                            <option value="1" selected>Aktif</option>
+                                        <label for="status-crew" class="form-label">Status Crew</label>
+                                        <select class="form-select" name="status_crew" id="status-crew">
+                                            <option value="1">Aktif</option>
                                             <option value="0">Tidak Aktif</option>
                                         </select>
-                                        @error('status_crew')
-                                            <div class="text-danger">{{ $message }}</div>
-                                        @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="cv">CV (.pdf) (2MB)</label>
