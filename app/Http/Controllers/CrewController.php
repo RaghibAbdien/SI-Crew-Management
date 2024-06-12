@@ -34,15 +34,15 @@ class CrewController extends Controller
         ->select('dokumens.*', 'crews.id_crew', 'crews.no_rekening', 'crews.id_bank')
         ->get();
         foreach ($docs as $doc) {
-            $awalMCU = new DateTime($doc->tgl_mcu);
+            $tglHariIni = new DateTime();;
             $berakhirMCU = new DateTime($doc->expired_mcu);
-            $selisih = $awalMCU->diff($berakhirMCU)->format('%a hari');
+            $selisih = $tglHariIni->diff($berakhirMCU)->format('%a hari');
             $doc->selisih_hari = $selisih;
         }
         foreach ($docs as $doc) {
-            $awalKontrak = new DateTime($doc->awal_kontrak);
+            $tglHariIni = new DateTime();
             $berakhirKontrak = new DateTime($doc->berakhir_kontrak);
-            $interval = $awalKontrak->diff($berakhirKontrak);
+            $interval = $tglHariIni->diff($berakhirKontrak);
             $sisaKontrak = sprintf(
                 '%d tahun %d bulan %d hari',
                 $interval->y,
