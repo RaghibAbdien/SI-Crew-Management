@@ -271,13 +271,15 @@
                         data: form.serialize(),
                         success: function(response) {
                             // Jika validasi berhasil, redirect atau lakukan tindakan lain
-                            window.location.href = '{{ route('dashboard') }}';
                             Swal.fire({
-                                    position: "center",
-                                    icon: "success",
-                                    title: "Berhasil",
-                                    showConfirmButton: false,
-                                    timer: 1750
+                                position: "center",
+                                icon: "success",
+                                title: "Berhasil",
+                                showConfirmButton: false,
+                                timer: 1750
+                            }).then(function() {
+                                // Setelah Swal selesai ditampilkan, lakukan redirect
+                                window.location.href = '{{ route('dashboard') }}';
                             });
                         },
                         error: function(xhr) {

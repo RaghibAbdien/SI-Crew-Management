@@ -91,13 +91,13 @@
                                             <td>{{ $crew->nohp_crew }}</td>
                                             <td>
                                                 <div class="
-                                                @if ($crew->status_crew === 1)
+                                                @if ($crew->status_crew == 1)
                                                 badge bg-success
                                                 @else
                                                  badge bg-danger
                                                 @endif
                                             ">
-                                                @if ($crew->status_crew === 1)
+                                                @if ($crew->status_crew == 1)
                                                     Aktif
                                                 @else
                                                     Tidak Aktif    
@@ -743,13 +743,15 @@
                     processData: false, // Tidak memproses data
                     success: function(response) {
                         // Jika validasi berhasil, redirect atau lakukan tindakan lain
-                        window.location.href = '{{ route('crew') }}';
                         Swal.fire({
                             position: "center",
                             icon: "success",
                             title: "Berhasil",
                             showConfirmButton: false,
                             timer: 1750
+                        }).then(function() {
+                            // Setelah Swal selesai ditampilkan, lakukan redirect
+                            window.location.href = '{{ route('crew') }}';
                         });
                     },
                     error: function(xhr) {
