@@ -41,4 +41,9 @@ class Crew extends Model
         return $this->hasMany(Absensi::class, 'id_crew');
     }
 
+    public function cutis()
+    {
+        return $this->hasMany(Cuti::class, 'id_crew');
+    }
+
 }

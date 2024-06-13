@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Cuti extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id'];
+
+
+    public function crews()
+    {
+        return $this->belongsTo(Crew::class, 'id_crew');
+    }
 }

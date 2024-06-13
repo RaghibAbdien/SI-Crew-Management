@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('id_crew');
             $table->text('keperluan');
-            $table->date('tgl_pengajuan');
+            $table->timestamp('tgl_pengajuan')->useCurrent();
             $table->date('tgl_mulai');
             $table->date('tgl_berakhir');
+            $table->string('surat_pengajuan');
             $table->enum('status', ['Pending', 'Disetujui', 'Ditolak'])->default('Pending');
             $table->timestamps();
 

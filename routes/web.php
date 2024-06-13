@@ -43,5 +43,8 @@ Route::group(['middleware' => ['auth', 'session.expired']], function (){
     Route::delete('absensi/{id}', [AbsensiController::class, 'destroy'])->name('hapus-absen');
     Route::get('/export-absensi', [AbsensiController::class, 'exportAbsensi'])->name('export-absensi');
     Route::get('/pengajuan-cuti', [CutiController::class, 'index'])->name('pengajuan-cuti');
+    Route::post('pengajuan-cuti', [CutiController::class, 'store'])->name('ajukan-cuti');
+    Route::put('pengajuan-cuti/{id}/{action}', [CutiController::class, 'validasi'])->name('update-cuti');
+    Route::delete('pengajuan-cuti/{id}', [CutiController::class, 'destroy'])->name('hapus-cuti');
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 });
