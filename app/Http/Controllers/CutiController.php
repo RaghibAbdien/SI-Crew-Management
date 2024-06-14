@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Crew;
 use App\Models\Cuti;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Rap2hpoutre\FastExcel\FastExcel;
 use Illuminate\Validation\ValidationException;
 
 class CutiController extends Controller
@@ -14,7 +18,7 @@ class CutiController extends Controller
      */
     public function index()
     {
-        $crews = Crew::all();
+        $crews = Crew::where('status_crew', true)->get();
         $cutis = Cuti::join('crews', 'cutis.id_crew', '=', 'crews.id_crew')
         ->select('cutis.*', 'crews.nama_crew')
         ->get();
@@ -94,5 +98,52 @@ class CutiController extends Controller
         $cuti->delete();
 
         return response()->json(['message' => 'Berhasil mengubah status cuti.']);
+    }
+
+    public function exportCuti()
+    {
+        // Ambil semua data absensi
+        $dataCuti = DB::table('cutis')
+        ->join('crews', 'cutis.id_crew', '=', 'crews.id_crew')
+        ->select('crews.nama_crew', 'cutis.*')
+        ->get();
+        $no = 1;
+
+        // Debug: Log jumlah data yang diambil
+        Log::info('Jumlah data pengajuan cuti yang diambil: ' . $dataCuti->count());
+
+        // Jika tidak ada data, log dan return error message
+        if ($dataCuti->isEmpty()) {
+            Log::warning('Tidak ada data pengajuan cuti yang tersedia untuk diekspor.');
+            return response()->json(['error' => 'Tidak ada data pengajuan cuti yang tersedia untuk diekspor.'], 404);
+        }
+
+        try {
+            return (new FastExcel($dataCuti))->download('data-pengajuan-cuti.xlsx', function ($item) use (&$no) {
+                // Debug: Log setiap item yang diproses
+                Log::info('Memproses item: ' . json_encode($item));
+
+                // Periksa apakah $item->crews dan $item->kehadiran ada
+                if (!$item->nama_crew) {
+                    Log::error('Data item tidak lengkap: ' . json_encode($item));
+                    throw new \Exception('Data item tidak lengkap.');
+                }
+
+                return [
+                    'No.' => $no++,
+                    'Nama Crew' => $item->nama_crew,
+                    'Keperluan' => $item->keperluan,
+                    'Tanggal Pengajuan' => $item->tgl_pengajuan,
+                    'Tanggal Mulai' => $item->tgl_mulai,
+                    'Tanggal Berakhir' => $item->tgl_berakhir,
+                    'Status' => $item->status,
+                ];
+            });
+        } catch (\Throwable $th) {
+            // Log error
+            Log::error('Kesalahan saat mengekspor data pengajuan cuti: ' . $th->getMessage());
+
+            return response()->json(['error' => 'Terjadi kesalahan saat mengekspor data pengajuan cuti.'], 500);
+        }
     }
 }

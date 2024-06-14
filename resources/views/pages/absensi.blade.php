@@ -36,9 +36,11 @@
                                     <button class="btn btn-primary waves-effect waves-light mx-2" type="button" aria-expanded="false" data-bs-toggle="modal" data-bs-target="#AddAbsensi">
                                         <i class="fa-solid fa-plus me-2"></i> Tambah Absensi
                                     </button>
+                                    @if ($absensis && count($absensis) > 0)
                                     <button class="btn btn-primary waves-effect waves-light mx-2" type="button" onclick="window.location.href='/export-absensi'">
                                             <i class="fa-solid fa-file-export me-2"></i>Export Crew
                                     </button>
+                                    @endif
                                 </div>
                             </div>
                         </div>

@@ -18,7 +18,7 @@ class AbsensiController extends Controller
      */
     public function index()
     {
-        $crews = Crew::all();
+        $crews = Crew::where('status_crew', true)->get();
         $absensis = Absensi::join('crews', 'absensis.id_crew', '=', 'crews.id_crew')
         ->select('absensis.*', 'crews.nama_crew')
         ->get();

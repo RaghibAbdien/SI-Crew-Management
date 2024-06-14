@@ -20,9 +20,9 @@
                 <div class="page-title-box">
                     <div class="row align-items-center">
                         <div class="col-md-8">
-                            <h6 class="page-title">Absensi Crew</h6>
+                            <h6 class="page-title">Pengajuan Cuti</h6>
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item active">Welcome to Absensi Crew</li>
+                                <li class="breadcrumb-item active">Welcome to Pengajuan Cuti</li>
                             </ol>
                         </div>
 
@@ -34,8 +34,10 @@
                                     <button class="btn btn-primary waves-effect waves-light mx-2" type="button" aria-expanded="false" data-bs-toggle="modal" data-bs-target="#AddCuti">
                                         <i class="fa-solid fa-plus me-2"></i> Ajukan Cuti
                                     </button>
-                                    <button class="btn btn-primary waves-effect waves-light mx-2" type="button" onclick="window.location.href='#'">
-                                            <i class="fa-solid fa-file-export me-2"></i>Export</button>
+                                    @if ($cutis && count($cutis) > 0)
+                                        <button class="btn btn-primary waves-effect waves-light mx-2" type="button" onclick="window.location.href='/export-cuti'">
+                                        <i class="fa-solid fa-file-export me-2"></i>Export</button>
+                                    @endif
                                 </div>
                             </div>
                         </div>
