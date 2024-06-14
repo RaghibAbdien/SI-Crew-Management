@@ -98,7 +98,7 @@ class AbsensiController extends Controller
         $absen = Absensi::findOrFail($id);
         $absen->delete();
 
-        return redirect()->back()->with('success', 'Absensi berhasil dihapus.');
+        return response()->json(['message' => 'Absensi berhasil dihapus']);
     }
 
 }

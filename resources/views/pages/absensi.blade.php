@@ -71,7 +71,7 @@
                                             <td>{{ $absen->nama_crew }}</td>
                                             <td>{{ $absen->kehadiran }}</td>
                                             <td>
-                                                <button type="submit" class="btn btn-danger" onclick="confirmHapus({{ $absen->id }})">Hapus</button>
+                                                    <button id="hapus-absen" class="btn btn-danger" data-id="{{ $absen->id }}">Hapus</button>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -89,10 +89,7 @@
 
     </div>
 
-    <form id="hapusAbsen-{{ $absen->id }}" action="{{ route('hapus-absen', $absen->id) }}" method="post">
-        @csrf
-        @method('DELETE')
-    </form>
+    
 
     <!-- Modal Tambah Crew -->
     <div id="AddAbsensi" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
@@ -196,23 +193,66 @@
         </script>
 
         <script>
-            function confirmHapus(id) {
-                Swal.fire({
-                    title: 'Apakah Anda yakin?',
-                    text: "Anda tidak akan dapat mengembalikan data ini!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ya, hapus!',
-                    cancelButtonText: 'Batal'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Submit form with the corresponding id
-                        document.getElementById('hapusAbsen-' + id).submit();
-                    }
-                })
-            }
+            $(document).ready(function() {
+                $(document).on('click', '#hapus-absen', function() {
+                    var id = $(this).data('id');
+                    var url = '{{ route("hapus-absen", ":id") }}';
+                    url = url.replace(':id', id);
+                    var $button = $(this); // Cache the button jQuery object
+
+                    // Tampilkan SweetAlert untuk konfirmasi
+                    Swal.fire({
+                        title: 'Apakah Anda yakin?',
+                        text: "Anda tidak akan dapat mengembalikan ini!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Ya, hapus!',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Disable the button
+                            $button.attr('disabled', 'disabled');
+
+                            // Kirim permintaan hapus menggunakan AJAX
+                            $.ajax({
+                                url: url,
+                                type: 'DELETE',
+                                headers: {
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                                },
+                                success: function(response) {
+                                    console.log("Success: ", response); // Debug log
+                                    Swal.fire({
+                                        position: "center",
+                                        icon: "success",
+                                        title: "Absensi berhasil dihapus",
+                                        showConfirmButton: false,
+                                        timer: 1750
+                                    }).then(function() {
+                                        // Setelah Swal selesai ditampilkan, lakukan redirect
+                                        window.location.href = '{{ route('absensi-crew') }}';
+                                    });
+                                },
+                                error: function(xhr) {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Error!',
+                                        text: 'Gagal menghapus absensi'
+                                    });
+
+                                    $button.removeAttr('disabled');
+                                },
+                                complete: function() {
+                                    // Enable the button after the request completes
+                                    $button.removeAttr('disabled');
+                                }
+                            });
+                        }
+                    });
+                });
+            });
         </script>
 
         @if(session('error'))
