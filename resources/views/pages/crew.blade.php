@@ -201,21 +201,21 @@
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="cv">CV (.pdf) (2MB)</label>
-                                        <input type="file" id="cv" class="filestyle" data-buttonname="btn-secondary" name="cv_path" accept=".pdf">
+                                        <input type="file" id="cv" class="form-control" data-buttonname="btn-secondary" name="cv_path" accept=".pdf">
                                         @error('cv_path')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="ktp">KTP (.pdf) (2MB)</label>
-                                        <input type="file" id="ktp" class="filestyle" data-buttonname="btn-secondary" name="ktp_path" accept=".pdf">
+                                        <input type="file" id="ktp" class="form-control" data-buttonname="btn-secondary" name="ktp_path" accept=".pdf">
                                         @error('ktp_path')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="vaksin">Vaksin (.pdf) (2MB)</label>
-                                        <input type="file" id="vaksin" class="filestyle" data-buttonname="btn-secondary" name="vaksin_path[]" multiple accept=".pdf">
+                                        <input type="file" id="vaksin" class="form-control" data-buttonname="btn-secondary" name="vaksin_path[]" multiple accept=".pdf">
                                         @if($errors->has('vaksin_path.*'))
                                             <div class="text-danger">
                                                 @foreach($errors->get('vaksin_path.*') as $message)
@@ -226,14 +226,14 @@
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="pkwt">PKWT (.pdf) (2MB)</label>
-                                        <input type="file" id="pkwt" class="filestyle" data-buttonname="btn-secondary" name="pkwt_path" accept=".pdf">
+                                        <input type="file" id="pkwt" class="form-control" data-buttonname="btn-secondary" name="pkwt_path" accept=".pdf">
                                         @error('pkwt_path')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="sertifikat">Sertifikat (.pdf) (2MB)</label>
-                                        <input type="file" id="sertifikat" class="filestyle" data-buttonname="btn-secondary" id="file-sertif" name="sertifikat_path[]" multiple accept=".pdf">
+                                        <input type="file" id="sertifikat" class="form-control" data-buttonname="btn-secondary" id="file-sertif" name="sertifikat_path[]" multiple accept=".pdf">
                                         @if($errors->has('sertifikat_path.*'))
                                             <div class="text-danger">
                                                 @foreach($errors->get('sertifikat_path.*') as $message)
@@ -244,35 +244,35 @@
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="ijazah">Ijazah (.pdf) (2MB)</label>
-                                        <input type="file" id="ijazah" class="filestyle" data-buttonname="btn-secondary" name="ijazah_path" accept=".pdf">
+                                        <input type="file" id="ijazah" class="form-control" data-buttonname="btn-secondary" name="ijazah_path" accept=".pdf">
                                         @error('ijazah_path')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="foto">Foto Crew</label>
-                                        <input type="file" id="foto" class="filestyle" data-buttonname="btn-secondary" name="fotocrew_path" accept="image/*">
+                                        <input type="file" id="foto" class="form-control" data-buttonname="btn-secondary" name="fotocrew_path" accept="image/*">
                                         @error('fotocrew_path')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="npwp">NPWP (.pdf) (2MB)</label>
-                                        <input type="file" id="npwp" class="filestyle" data-buttonname="btn-secondary" name="npwp_path" accept=".pdf">
+                                        <input type="file" id="npwp" class="form-control" data-buttonname="btn-secondary" name="npwp_path" accept=".pdf">
                                         @error('npwp_path')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="skck">SKCK (.pdf) (2MB)</label>
-                                        <input type="file" id="skck" class="filestyle" data-buttonname="btn-secondary" name="skck_path" accept=".pdf">
+                                        <input type="file" id="skck" class="form-control" data-buttonname="btn-secondary" name="skck_path" accept=".pdf">
                                         @error('skck_path')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="mcu">Medical Check Up (.pdf) (2MB)</label>
-                                        <input type="file" id="mcu" class="filestyle" data-buttonname="btn-secondary" name="mcu_path[]" multiple accept=".pdf">
+                                        <input type="file" id="mcu" class="form-control" data-buttonname="btn-secondary" name="mcu_path[]" multiple accept=".pdf">
                                         @if($errors->has('mcu_path.*'))
                                             <div class="text-danger">
                                                 @foreach($errors->get('mcu_path.*') as $message)
@@ -425,21 +425,21 @@
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="cv">CV (.pdf) (2MB)</label>
-                                        <input type="file" id="cv" class="filestyle" data-buttonname="btn-secondary" name="cv_path">
+                                        <input type="file" id="cv" class="form-control" data-buttonname="btn-secondary" name="cv_path">
                                         @error('cv_path')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="ktp">KTP (.pdf) (2MB)</label>
-                                        <input type="file" id="ktp" class="filestyle" data-buttonname="btn-secondary" name="ktp_path">
+                                        <input type="file" id="ktp" class="form-control" data-buttonname="btn-secondary" name="ktp_path">
                                         @error('ktp_path')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="vaksin">Vaksin (.pdf) (2MB)</label>
-                                        <input type="file" id="vaksin" multiple class="filestyle" data-buttonname="btn-secondary" name="vaksin_path[]">
+                                        <input type="file" id="vaksin" multiple class="form-control" data-buttonname="btn-secondary" name="vaksin_path[]">
                                         @if($errors->has('vaksin_path.*'))
                                             <div class="text-danger">
                                                 @foreach($errors->get('vaksin_path.*') as $message)
@@ -450,14 +450,14 @@
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="pkwt">PKWT (.pdf) (2MB)</label>
-                                        <input type="file" id="pkwt" class="filestyle" data-buttonname="btn-secondary" name="pkwt_path">
+                                        <input type="file" id="pkwt" class="form-control" data-buttonname="btn-secondary" name="pkwt_path">
                                         @error('pkwt_path')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="sertifikat">Sertifikat (.pdf) (2MB)</label>
-                                        <input type="file" id="sertifikat" class="filestyle" data-buttonname="btn-secondary" name="sertifikat_path[]" multiple>
+                                        <input type="file" id="sertifikat" class="form-control" data-buttonname="btn-secondary" name="sertifikat_path[]" multiple>
                                         @if($errors->has('sertifikat_path.*'))
                                             <div class="text-danger">
                                                 @foreach($errors->get('sertifikat_path.*') as $message)
@@ -468,35 +468,35 @@
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="ijazah">Ijazah (.pdf) (2MB)</label>
-                                        <input type="file" id="ijazah" class="filestyle" data-buttonname="btn-secondary" name="ijazah_path">
+                                        <input type="file" id="ijazah" class="form-control" data-buttonname="btn-secondary" name="ijazah_path">
                                         @error('ijazah_path')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="foto">Foto Crew</label>
-                                        <input type="file" id="foto" class="filestyle" data-buttonname="btn-secondary" name="fotocrew_path">
+                                        <input type="file" id="foto" class="form-control" data-buttonname="btn-secondary" name="fotocrew_path">
                                         @error('fotocrew_path')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="npwp">NPWP (.pdf) (2MB)</label>
-                                        <input type="file" id="npwp" class="filestyle" data-buttonname="btn-secondary" name="npwp_path">
+                                        <input type="file" id="npwp" class="form-control" data-buttonname="btn-secondary" name="npwp_path">
                                         @error('npwp_path')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="skck">SKCK (.pdf) (2MB)</label>
-                                        <input type="file" id="skck" class="filestyle" data-buttonname="btn-secondary" name="skck_path">
+                                        <input type="file" id="skck" class="form-control" data-buttonname="btn-secondary" name="skck_path">
                                         @error('skck_path')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="mcu">Medical Check Up (.pdf) (2MB)</label>
-                                        <input type="file" id="mcu" class="filestyle" data-buttonname="btn-secondary" name="mcu_path[]" multiple>
+                                        <input type="file" id="mcu" class="form-control" data-buttonname="btn-secondary" name="mcu_path[]" multiple>
                                         @error('mcu_path')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
@@ -730,7 +730,7 @@
                 var form = $(this);
         
                 // Menonaktifkan tombol submit
-                form.find('button[type="submit"]').prop('disabled', true);
+                form.find('button[type="submit"]').prop('disabled', true).text('Processing...');
         
                 // Membuat objek FormData
                 var formData = new FormData(form[0]);

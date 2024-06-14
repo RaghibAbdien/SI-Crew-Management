@@ -77,8 +77,10 @@
                                                 <td>{{ $cuti->tgl_pengajuan }}</td>
                                                 <td>{{ $cuti->tgl_mulai }}</td>
                                                 <td>{{ $cuti->tgl_berakhir }}</td>
-                                                <td class="d-flex">
-                                                    <a href="{{ Storage::url($cuti->surat_pengajuan) }}" target="_blank" class="mx-auto btn btn-primary"><i class="fa-solid fa-download"></i></a>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <a href="{{ Storage::url($cuti->surat_pengajuan) }}" target="_blank" class="mx-auto btn btn-primary"><i class="fa-solid fa-download"></i></a>
+                                                    </div>
                                                 </td>
                                                 <td>
                                                     <div class=" fs-6
